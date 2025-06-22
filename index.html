@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora MHS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Physics_pictogram.svg/512px-Physics_pictogram.svg.png" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Movimento Harmônico Simples</h1>
+
+        <p>Escolha a equação que deseja calcular:</p>
+        <form id="calc-form">
+            <label for="opcao">Escolha a Equação:</label>
+            <select id="opcao" name="opcao" onchange="mostrarCampos()">
+                <option value="">Selecione uma equação</option>
+                <option value="posicao">Posição x(t) = A * cos(ω * t + φ) [Unidade: metros]</option>
+                <option value="velocidade">Velocidade v(t) = -A * ω * sin(ω * t + φ) [Unidade: metros/segundo]</option>
+                <option value="aceleracao">Aceleração a(t) = -A * ω² * cos(ω * t + φ) [Unidade: metros/segundo²]</option>
+                <option value="amplitude">Amplitude A = x(t) / cos(ω * t + φ) [Unidade: metros]</option>
+                <option value="frequencia">Frequência f = ω / (2 * π), Período T = 2 * π / ω [Unidade: Hz e segundos]</option>
+                <option value="frequencia-angular">Frequência Angular ω = 2 * π * f [Unidade: rad/s]</option>
+                <option value="periodo">Período T = 1 / f [Unidade: segundos]</option>
+                <option value="pendulo-simples">Pêndulo Simples T = 2π * √(L / g) [Unidade: segundos]</option>
+                <option value="pendulo-fisico">Pêndulo Físico T = 2π * √(I / mgh) [Unidade: segundos]</option>
+                <option value="pendulo-torçao">Pêndulo de Torção T = 2π * √(I / K) [Unidade: segundos]</option>
+            </select>
+
+            <!-- Campos dinâmicos -->
+            <div id="campo-amplitude" style="display: none;">
+                <label for="A">Amplitude A (m):</label>
+                <input type="number" id="A" name="A" step="any" required>
+            </div>
+
+            <div id="campo-omega" style="display: none;">
+                <label for="omega">Frequência Angular ω (rad/s):</label>
+                <input type="number" id="omega" name="omega" step="any" required>
+            </div>
+
+            <div id="campo-tempo" style="display: none;">
+                <label for="t">Tempo t (s):</label>
+                <input type="number" id="t" name="t" step="any" required>
+            </div>
+
+            <div id="campo-fase" style="display: none;">
+                <label for="phi">Fase Inicial φ (rad):</label>
+                <input type="number" id="phi" name="phi" step="any" required>
+            </div>
+
+            <div id="campo-posicao" style="display: none;">
+                <label for="x">Posição x(t) (m):</label>
+                <input type="number" id="x" name="x" step="any" required>
+            </div>
+
+            <div id="campo-frequencia" style="display: none;">
+                <label for="f">Frequência f (Hz):</label>
+                <input type="number" id="f" name="f" step="any" required>
+            </div>
+
+            <!-- Campos para pêndulos -->
+            <div id="campo-L" style="display: none;">
+                <label for="L">Comprimento L (m):</label>
+                <input type="number" id="L" name="L" step="any" required>
+            </div>
+
+            <div id="campo-I" style="display: none;">
+                <label for="I">Momento de Inércia I (kg·m²):</label>
+                <input type="number" id="I" name="I" step="any" required>
+            </div>
+
+            <div id="campo-m" style="display: none;">
+                <label for="m">Massa m (kg):</label>
+                <input type="number" id="m" name="m" step="any" required>
+            </div>
+
+            <div id="campo-h" style="display: none;">
+                <label for="h">Distância h (m):</label>
+                <input type="number" id="h" name="h" step="any" required>
+            </div>
+
+            <div id="campo-K" style="display: none;">
+                <label for="K">Constante de Torção K (N·m/rad):</label>
+                <input type="number" id="K" name="K" step="any" required>
+            </div>
+
+            <button type="button" onclick="calcular()">Calcular</button>
+        </form>
+
+        <h2 id="resultado">Resultado: </h2>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
